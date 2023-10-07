@@ -1,14 +1,14 @@
 import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { createUser } from '../features/usersSlice'
-// import { useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 
 const Create = () => {
     const [values, setValues] = useState([])
   
     const dispatch = useDispatch()
     
-    // const navigate = useNavigate()
+    const navigate = useNavigate()
 
     const getValues = (e) => {
       setValues({ ...values, [e.target.name]: e.target.value })
@@ -18,7 +18,7 @@ const Create = () => {
       e.preventDefault()
       console.log(values)
       dispatch(createUser(values))
-      // navigate('/read')
+      navigate('/read')
     }
   return (
     <div className='create'>

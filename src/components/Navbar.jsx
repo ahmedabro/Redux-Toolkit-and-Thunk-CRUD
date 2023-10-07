@@ -10,7 +10,7 @@ const Navbar = () => {
                   <Link to='/'>Create User</Link>
               </li>
               <li>
-                  <Link>Read Users</Link>
+                  <Link to='/read'>Read Users</Link>
               </li>
           </ul>
           <input type='text' placeholder='Search..' />

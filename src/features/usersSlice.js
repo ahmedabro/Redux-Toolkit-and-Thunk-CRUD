@@ -22,16 +22,16 @@ export const createUser = createAsyncThunk("createUser", async (data, { rejectWi
 // This block of code will return a promise, either (pending, fulfilled or rejected) for that we have to add extraReducer in createSlice
 
 // Read action
-// export const readUsers = createAsyncThunk("readUsers", async (args, { rejectWithValue }) => {
-//     const response = await fetch(base_url)
+export const readUsers = createAsyncThunk("readUsers", async (args, { rejectWithValue }) => {
+    const response = await fetch(base_url)
     
-//     try {
-//         const result = response.json()
-//         return result
-//     } catch (error) {
-//         return(rejectWithValue(error))
-//     }
-// }) 
+    try {
+        const result = response.json()
+        return result
+    } catch (error) {
+        return(rejectWithValue(error))
+    }
+}) 
 
 const usersSlice = createSlice({
     name: "users",
@@ -51,19 +51,19 @@ const usersSlice = createSlice({
         builder.addCase(createUser.rejected, (state, action) => {
             state.isLoading = false
             state.error = action.payload.message
-        })
+        }),
             
-        // builder.addCase(readUsers.pending, (state) => {
-        //     state.isLoading = true
-        // }),
-        // builder.addCase(readUsers.fulfilled, (state,action) => {
-        //     state.isLoading = false
-        //     state.users = action.payload
-        // }),
-        // builder.addCase(readUsers.rejected, (state,action) => {
-        //     state.isLoading = false
-        //     state.error = action.payload
-        // })
+        builder.addCase(readUsers.pending, (state) => {
+            state.isLoading = true
+        }),
+        builder.addCase(readUsers.fulfilled, (state,action) => {
+            state.isLoading = false
+            state.users = action.payload
+        }),
+        builder.addCase(readUsers.rejected, (state,action) => {
+            state.isLoading = false
+            state.error = action.payload
+        })
     }
 })
 
