@@ -36,3 +36,20 @@ nav ul {
 .create input[type=text] {
   width: 70%;
 }
+
+.users-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 30px 0;
+}
+
+.user-card {
+  min-width: 450px;
+  text-align: center;
+  background: #bfdda3;
+  border-radius: 10px;
+  padding: 20px 0;
+  margin: 15px 0;
+  box-shadow: 0 10px 15px #0000002b;
+}

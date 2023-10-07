@@ -12,12 +12,16 @@ const Read = () => {
     const isLoading = useSelector(selectIsLoading)
 
   return (
-    <div>
+    <div className='read-users'>
       {
         !isLoading ?
-        <div>{allUsers.map(user => {
+        <div className='users-container'>{allUsers.map(user => {
             return (
-                <h5 key={user.id}>{ user.name }</h5>
+                <div className="user-card" key={user.id}>
+                    <h2>{user.name}</h2>
+                    <h3>email: {user.email}</h3>
+                    <h4>{user.age} years old</h4>
+                </div>
             )
         })}</div> 
         : 
