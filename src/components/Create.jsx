@@ -17,8 +17,13 @@ const Create = () => {
     const handleSubmit = (e) => {
       e.preventDefault()
       console.log(values)
-      dispatch(createUser(values))
-      navigate('/read')
+      if (Object.keys(values).length === 4) {
+        dispatch(createUser(values))
+        navigate('/read')
+      }
+      else {
+        alert("Please fill all data")
+      }
     }
   return (
     <div className='create'>
