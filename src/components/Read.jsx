@@ -14,7 +14,7 @@ const Read = () => {
   return (
     <div className='read-users'>
       {
-        !isLoading ?
+        allUsers && !isLoading ?
         <div className='users-container'>{allUsers.map(user => {
             return (
                 <div className="user-card" key={user.id}>
