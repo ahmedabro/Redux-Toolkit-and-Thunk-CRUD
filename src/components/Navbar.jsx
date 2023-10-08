@@ -1,10 +1,19 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
-import { useSelector } from 'react-redux'
-import { selectAllUsers } from '../features/usersSlice'
+import { useDispatch, useSelector } from 'react-redux'
+import { selectAllUsers, searchUser } from '../features/usersSlice'
 
 const Navbar = () => {
   const allUsers = useSelector(selectAllUsers)
+
+  const [searchValue, setSearchValue] = useState("")
+
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+    dispatch(searchUser(searchValue))    
+  }, [searchValue])
+
   return (
     <nav>
           <h4>RTK Thunk</h4>
@@ -16,7 +25,7 @@ const Navbar = () => {
                   <Link to='/read'>Read Users ({allUsers.length})</Link>
               </li>
           </ul>
-          <input type='text' placeholder='Search..' />
+          <input type='text' placeholder='Search..' value={searchValue} onChange={(e) => setSearchValue(e.target.value)} />
     </nav>
   )
 }

@@ -65,12 +65,21 @@ export const editUser = createAsyncThunk("editUser", async (data, { rejectWithVa
     }
 })
 
+
+// Slice containing actions and reducers
 const usersSlice = createSlice({
     name: "users",
     initialState: {
         users: [],
         isLoading: false,
         error: null,
+        searchData: "",
+    },
+    reducers: {
+        searchUser: (state, action) => {
+            state.searchData = action.payload
+            console.log(state.searchData)
+        }
     },
     extraReducers: (builder) => {
         builder.addCase(createUser.pending, (state, action) => {
@@ -143,5 +152,9 @@ export const selectAllUsers = (state) => state.users.users
 export const selectIsLoading = (state) => state.users.isLoading
 
 export const selectError = (state) => state.users.error
+
+export const selectSearchData = (state) => state.users.searchData
+
+export const {searchUser} = usersSlice.actions
 
 export default usersSlice.reducer
