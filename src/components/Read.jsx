@@ -37,7 +37,7 @@ const Read = () => {
                         <h4>Gender: {user.gender}</h4>
                         <div className="card-functions">
                             <Link onClick={() => handleShowModal(user.id)}>View</Link>
-                            <Link>Edit</Link>
+                            <Link to={`/update/${user.id}`}>Update</Link>
                             <Link onClick={() => dispatch(deleteUser(user.id))}>Delete</Link>
                         </div>
                     </div>

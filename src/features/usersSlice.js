@@ -36,7 +36,25 @@ export const readUsers = createAsyncThunk("readUsers", async (args, { rejectWith
 // Delete action
 export const deleteUser = createAsyncThunk("deleteUser", async (id, { rejectWithValue }) => {
     const response = await fetch(`${base_url}/${id}`, {
-        method: "DELETE"
+        method: "DELETE",
+    })
+
+    try {
+        const result = response.json()
+        return result
+    } catch (error) {
+        return(rejectWithValue(error))
+    }
+})
+
+// Update action
+export const editUser = createAsyncThunk("editUser", async (data, { rejectWithValue }) => {
+    const response = await fetch(`${base_url}/${data.id}`, {
+        method: "PUT",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data)
     })
 
     try {
@@ -91,6 +109,29 @@ const usersSlice = createSlice({
             }
         }),
         builder.addCase(deleteUser.rejected, (state,action) => {
+            state.isLoading = false
+            state.error = action.payload
+        }),
+            
+        builder.addCase(editUser.pending, (state, action) => {
+            state.isLoading = true
+        }),
+        builder.addCase(editUser.fulfilled, (state, action) => {
+            state.isLoading = false
+            state.users = state.users.map(user => {
+                if (user.id === action.payload.id) {
+                    return (
+                        action.payload
+                    )
+                }
+                else {
+                    return (
+                        user
+                    )
+                }
+            })
+        }),
+        builder.addCase(editUser.rejected, (state, action) => {
             state.isLoading = false
             state.error = action.payload
         })
