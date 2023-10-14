@@ -47,11 +47,12 @@ nav ul {
 }
 
 .read-users>h2 {
-  text-align: center;
+  margin-bottom: 20px;
 }
 
 .read-users {
   margin: 30px 0 0;
+  text-align: center;
 }
 
 .user-card {
@@ -119,4 +120,22 @@ nav ul {
 
 .modal-body>* {
   margin: 15px 0;
+}
+
+.radio-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+.radio-container input {
+  margin: 0;
+}
+
+.radio-group {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  margin-top: 10px;
 }

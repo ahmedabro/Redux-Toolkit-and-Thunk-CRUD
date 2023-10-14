@@ -74,11 +74,16 @@ const usersSlice = createSlice({
         isLoading: false,
         error: null,
         searchData: "",
+        checkedRadioData: "",
     },
     reducers: {
         searchUser: (state, action) => {
             state.searchData = action.payload
             console.log(state.searchData)
+        },
+        setCheckedRadioData: (state, action) => {
+            state.checkedRadioData = action.payload  
+            console.log(state.checkedRadioData)
         }
     },
     extraReducers: (builder) => {
@@ -155,6 +160,8 @@ export const selectError = (state) => state.users.error
 
 export const selectSearchData = (state) => state.users.searchData
 
-export const {searchUser} = usersSlice.actions
+export const selectCheckedRadioData = (state) => state.users.checkedRadioData
+
+export const {searchUser, setCheckedRadioData} = usersSlice.actions
 
 export default usersSlice.reducer
